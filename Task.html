@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Marks Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Student Marks Calculator</h1>
+    <div class="input-section">
+      <label>Math: <input type="number" id="math" placeholder="Enter Math marks"></label>
+      <label>Science: <input type="number" id="science" placeholder="Enter Science marks"></label>
+      <label>English: <input type="number" id="english" placeholder="Enter English marks"></label>
+      <button onclick="calculate()">Calculate</button>
+    </div>
+    <div class="result-section">
+      <p id="total">Total: 0</p>
+      <p id="average">Average: 0</p>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
