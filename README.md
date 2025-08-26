@@ -1,74 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Marks Calculator</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-    }
-  </style>
+font-size: 16px;
+width: 80%;
+border-radius: 8px;
+border: 1px solid #ccc;
+margin-bottom: 15px;
+}
+button {
+padding: 10px 20px;
+font-size: 16px;
+background: #4CAF50;
+color: white;
+border: none;
+border-radius: 8px;
+cursor: pointer;
+transition: 0.3s;
+}
+button:hover {
+background: #45a049;
+}
+#result {
+font-size: 18px;
+font-weight: bold;
+margin-top: 20px;
+color: #e91e63;
+text-align: left;
+}
+</style>
 </head>
 <body>
-  <h1>Student Marks Calculator</h1>
-  <form id="student-form">
-    <label for="name">Student Name:</label>
-    <input type="text" id="name" name="name"><br><br>
-    <label for="math-marks">Math Marks:</label>
-    <input type="number" id="math-marks" name="math-marks"><br><br>
-    <label for="science-marks">Science Marks:</label>
-    <input type="number" id="science-marks" name="science-marks"><br><br>
-    <label for="english-marks">English Marks:</label>
-    <input type="number" id="english-marks" name="english-marks"><br><br>
-    <button id="calculate-btn">Calculate Marks</button>
-  </form>
-  <div id="result"></div>
 
-  <script>
-    let students = [];
 
-    document.getElementById('calculate-btn').addEventListener('click', (e) => {
-      e.preventDefault();
-      let name = document.getElementById('name').value;
-      let mathMarks = parseInt(document.getElementById('math-marks').value);
-      let scienceMarks = parseInt(document.getElementById('science-marks').value);
-      let englishMarks = parseInt(document.getElementById('english-marks').value);
+<div class="container">
+<h1>📊 Student Marks Calculator 📊</h1>
+<p>Enter marks for Math, Science, and English</p>
 
-      let student = {
-        name: name,
-        marks: {
-          math: mathMarks,
-          science: scienceMarks,
-          english: englishMarks
-        }
-      };
 
-      students.push(student);
-      calculateStudentMarks(students);
-    });
+<input type="number" id="math" placeholder="Math Marks">
+<input type="number" id="science" placeholder="Science Marks">
+<input type="number" id="english" placeholder="English Marks">
+<br>
+<button onclick="calculateMarks()">Calculate Total & Average</button>
 
-    function calculateStudentMarks(students) {
-      let studentsWithTotalMarks = students.map(student => {
-        let totalMarks = Object.values(student.marks).reduce((acc, mark) => acc + mark, 0);
-        return { ...student, totalMarks };
-      });
 
-      let studentsWithAverageMarks = studentsWithTotalMarks.map(student => {
-        let averageMarks = student.totalMarks / Object.keys(student.marks).length;
-        return { ...student, averageMarks };
-      });
+<div id="result"></div>
+</div>
 
-      let resultHtml = '';
-      studentsWithAverageMarks.forEach(student => {
-        resultHtml += `<p>Student Name: ${student.name}</p>`;
-        resultHtml += `<p>Total Marks: ${student.totalMarks}</p>`;
-        resultHtml += `<p>Average Marks: ${student.averageMarks}</p>`;
-        resultHtml += `<hr>`;
-      });
 
-      document.getElementById('result').innerHTML = resultHtml;
-    }
-  </script>
+<script>
+function calculateMarks() {
+let math = Number(document.getElementById("math").value);
+let science = Number(document.getElementById("science").value);
+let english = Number(document.getElementById("english").value);
+
+
+if (isNaN(math) || isNaN(science) || isNaN(english)) {
+document.getElementById("result").innerText = "⚠️ Please enter valid marks!";
+document.getElementById("result").style.color = "red";
+return;
+}
+
+
+let total = math + science + english;
+let average = (total / 3).toFixed(2);
+
+
+document.getElementById("result").innerHTML =
+`Total Marks: <b>${total}</b><br>Average Marks: <b>${average}</b>`;
+document.getElementById("result").style.color = "green";
+}
+</script>
+
+
 </body>
 </html>
